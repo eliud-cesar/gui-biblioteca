@@ -8,6 +8,21 @@ public class Prestamo {
     private int idAlumno;
     private LocalDate fechaPrestamo;
     private LocalDate fechaDevolucion;
+    private boolean estadoDevolucion;
+
+    /**
+     * @return the estadoDevolucion
+     */
+    public boolean isEstadoDevolucion() {
+        return estadoDevolucion;
+    }
+
+    /**
+     * @param estadoDevolucion the estadoDevolucion to set
+     */
+    public void setEstadoDevolucion(boolean estadoDevolucion) {
+        this.estadoDevolucion = estadoDevolucion;
+    }
 
     /**
      * @return the idPrestamo

@@ -80,6 +80,10 @@ public class JPanelPrestamos extends javax.swing.JPanel {
             }
         });
         jScrollPane1.setViewportView(TablaContenidoPrestamos);
+        if (TablaContenidoPrestamos.getColumnModel().getColumnCount() > 0) {
+            TablaContenidoPrestamos.getColumnModel().getColumn(0).setMaxWidth(30);
+            TablaContenidoPrestamos.getColumnModel().getColumn(1).setMaxWidth(100);
+        }
 
         jLabel3.setForeground(new java.awt.Color(102, 102, 102));
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
