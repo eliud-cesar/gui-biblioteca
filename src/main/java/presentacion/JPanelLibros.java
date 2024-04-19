@@ -7,6 +7,7 @@ import javax.swing.table.DefaultTableModel;
 public class JPanelLibros extends javax.swing.JPanel {
 
     DefaultTableModel modelo;
+    Utilidades u = new Utilidades();
     
     public JPanelLibros() {
         initComponents();        
@@ -162,7 +163,7 @@ public class JPanelLibros extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "Error 500");
             PanelAviso.setBackground(Color.red);
         }
-        Utilidades.changeFeedback(Feedback, "Registro agregado", "check.png");
+        u.changeFeedback(Feedback, "Registro agregado", "check.png");
         PanelAviso.setBackground(new Color(109,216,97));
     }//GEN-LAST:event_BtnInicioActionPerformed
 

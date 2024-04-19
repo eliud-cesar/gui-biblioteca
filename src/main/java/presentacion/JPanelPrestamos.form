@@ -154,7 +154,7 @@
                 <Column editable="true" title="ISBN" type="java.lang.String"/>
                 <Column editable="true" title="Alumno" type="java.lang.String"/>
                 <Column editable="true" title="Fecha del prestamo" type="java.lang.String"/>
-                <Column editable="true" title="Devolucion" type="java.lang.String"/>
+                <Column editable="true" title="Fecha de devolucion" type="java.lang.String"/>
               </Table>
             </Property>
             <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">

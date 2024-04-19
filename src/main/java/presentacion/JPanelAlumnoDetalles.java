@@ -16,7 +16,7 @@ public class JPanelAlumnoDetalles extends javax.swing.JPanel {
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
-        ImgFotoAlumno = new javax.swing.JLabel();
+        ImgAvatar = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         ImgEsInscrito = new javax.swing.JLabel();
@@ -69,11 +69,10 @@ public class JPanelAlumnoDetalles extends javax.swing.JPanel {
         jButton3.setText("Dar de baja");
         jButton3.setPreferredSize(new java.awt.Dimension(72, 30));
 
-        ImgFotoAlumno.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-
         jLabel1.setForeground(new java.awt.Color(102, 102, 102));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Cambiar foto");
+        jLabel1.setText("Editar datos");
+        jLabel1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         jPanel2.setBackground(new java.awt.Color(224, 231, 248));
         jPanel2.setPreferredSize(new java.awt.Dimension(359, 100));
@@ -83,7 +82,7 @@ public class JPanelAlumnoDetalles extends javax.swing.JPanel {
         jLabel5.setText("Inscrito");
 
         jLabel8.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel8.setText("4 Semestre");
+        jLabel8.setText("Campus TecNM Costa Chica");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -186,7 +185,7 @@ public class JPanelAlumnoDetalles extends javax.swing.JPanel {
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(ImgFotoAlumno, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(ImgAvatar, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
@@ -213,7 +212,7 @@ public class JPanelAlumnoDetalles extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(14, 14, 14)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(ImgFotoAlumno, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ImgAvatar, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -248,14 +247,17 @@ public class JPanelAlumnoDetalles extends javax.swing.JPanel {
     public void Imagenes() {
         ImgEsInscrito.setSize(70, 70);
         ImgEsSancionado.setSize(70, 70);
-        Utilidades.AsignarDimensionesImg(ImgEsInscrito, "inscrito.png");
-        Utilidades.AsignarDimensionesImg(ImgEsSancionado, "sancion.png");
+        ImgAvatar.setSize(150, 150);
+        Utilidades u = new Utilidades();
+        u.AsignarDimensionesImg(ImgAvatar, "avatar.png");
+        u.AsignarDimensionesImg(ImgEsInscrito, "inscrito.png");
+        u.AsignarDimensionesImg(ImgEsSancionado, "sancion.png");
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    public static javax.swing.JLabel ImgAvatar;
     public static javax.swing.JLabel ImgEsInscrito;
     public static javax.swing.JLabel ImgEsSancionado;
-    private javax.swing.JLabel ImgFotoAlumno;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;

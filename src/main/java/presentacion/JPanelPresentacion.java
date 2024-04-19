@@ -114,8 +114,9 @@ public class JPanelPresentacion extends javax.swing.JPanel {
     public void Imgs() {
         ImgAviso.setSize(176, 89);
         ImgInicio.setSize(295, 498);
-        Utilidades.AsignarDimensionesImg(ImgInicio, "imagenInicio.jpg");
-        Utilidades.AsignarDimensionesImg(ImgAviso, "aviso.jpg");
+        Utilidades u = new Utilidades();
+        u.AsignarDimensionesImg(ImgInicio, "imagenInicio.jpg");
+        u.AsignarDimensionesImg(ImgAviso, "aviso.jpg");
     }
     
     private void ImgInicioComponentMoved(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_ImgInicioComponentMoved

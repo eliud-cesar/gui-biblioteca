@@ -7,6 +7,8 @@ import javax.swing.table.DefaultTableModel;
 public class JPanelPrestamos extends javax.swing.JPanel {
 
     DefaultTableModel modelo;
+    Utilidades u = new Utilidades();
+    
     public JPanelPrestamos() {
         initComponents();
         modelo = (DefaultTableModel) TablaContenidoPrestamos.getModel();
@@ -68,7 +70,7 @@ public class JPanelPrestamos extends javax.swing.JPanel {
 
             },
             new String [] {
-                "", "ID", "ISBN", "Alumno", "Fecha del prestamo", "Devolucion"
+                "", "ID", "ISBN", "Alumno", "Fecha del prestamo", "Fecha de devolucion"
             }
         ) {
             Class[] types = new Class [] {
@@ -164,7 +166,7 @@ public class JPanelPrestamos extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "Error 500");
             PanelAviso.setBackground(Color.red);
         }
-        Utilidades.changeFeedback(Feedback, "Registro agregado", "check.png");
+        u.changeFeedback(Feedback, "Registro agregado", "check.png");
         PanelAviso.setBackground(new Color(109,216,97));
     }//GEN-LAST:event_BtnInicioActionPerformed
 

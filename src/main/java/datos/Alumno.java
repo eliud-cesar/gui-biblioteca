@@ -2,7 +2,7 @@ package datos;
 
 
 public class Alumno {
-    private int idAlumno;
+    private int matricula;
     private String nombre;
     private String apellidos;
     private String email;
@@ -12,15 +12,15 @@ public class Alumno {
     /**
      * @return the idAlumno
      */
-    public int getIdAlumno() {
-        return idAlumno;
+    public int getMatricula() {
+        return matricula;
     }
 
     /**
      * @param idAlumno the idAlumno to set
      */
-    public void setIdAlumno(int idAlumno) {
-        this.idAlumno = idAlumno;
+    public void setMatricula(int matricula) {
+        this.matricula = matricula;
     }
 
     /**

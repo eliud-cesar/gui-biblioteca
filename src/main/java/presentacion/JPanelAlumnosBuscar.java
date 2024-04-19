@@ -45,6 +45,7 @@ public class JPanelAlumnosBuscar extends javax.swing.JPanel {
         PanelBuscar.setBackground(new java.awt.Color(255, 255, 255));
         PanelBuscar.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 12, 0));
 
+        TextoBuscarAlumno.setText("22060023");
         TextoBuscarAlumno.setPreferredSize(new java.awt.Dimension(250, 30));
         TextoBuscarAlumno.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -169,7 +170,8 @@ public class JPanelAlumnosBuscar extends javax.swing.JPanel {
 
     public void Imgs() {
         ImgGorroEstudiante.setSize(150, 150);
-        Utilidades.AsignarDimensionesImg(ImgGorroEstudiante, "gorroEstudiante.png");
+        Utilidades u = new Utilidades();
+        u.AsignarDimensionesImg(ImgGorroEstudiante, "gorroEstudiante.png");
         TextoBuscarAlumno.requestFocus();
     }
     

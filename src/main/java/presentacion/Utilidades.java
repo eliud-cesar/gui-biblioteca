@@ -24,17 +24,17 @@ public class Utilidades {
     }
     
     // CODIGO PARA EL FEEDBACK DE LOS PANELES EN LAS ACCIONES DE ELIMINAR O AGREGAR
-    public static void changeFeedback(JLabel text, String msj, String rutaImg) {
+    public void changeFeedback(JLabel text, String msj, String rutaImg) {
         text.removeAll();
         text.setText("");
         text.setText(msj);
-        ImageIcon icono = new ImageIcon("src/main/resources/" + rutaImg);
+        ImageIcon icono = new ImageIcon(getClass().getResource("/" + rutaImg));
         text.setIcon(icono);
     }
     
     // ASIGNAR IMAGENES A UN LABEL
-    public static void AsignarDimensionesImg(JLabel nombreEtiqueta, String nombreArchivo) {
-        ImageIcon imagen = new ImageIcon("src/main/resources/" + nombreArchivo);
+    public void AsignarDimensionesImg(JLabel nombreEtiqueta, String nombreArchivo) {
+        ImageIcon imagen = new ImageIcon(getClass().getResource("/" + nombreArchivo));
         Icon icono = new ImageIcon(imagen.getImage().getScaledInstance(nombreEtiqueta.getWidth(), nombreEtiqueta.getHeight(), Image.SCALE_DEFAULT));
         nombreEtiqueta.setIcon(icono);
     }

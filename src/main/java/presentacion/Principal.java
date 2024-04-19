@@ -49,6 +49,7 @@ public class Principal extends javax.swing.JFrame {
         BtnInicio3.setIconTextGap(8);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
         setSize(new java.awt.Dimension(1040, 620));
 
         jPFondo.setBackground(new java.awt.Color(255, 255, 255));
