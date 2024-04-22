@@ -40,7 +40,7 @@ public class Utilidades {
     }
     
     // CODIGO PARA IMPORTAR UN PANEL EN LA PRINCIPAL
-    private static void ShowPanel(JPanel p, JPanel content) {
+    public static void ShowPanel(JPanel p, JPanel content) {
         p.setSize(780, 540);
         p.setLocation(0, 0);
         
@@ -75,11 +75,11 @@ public class Utilidades {
                 pab.Imgs();
                 break;
 
-            case "AlumnoDetalles":
-                JPanelAlumnoDetalles pad = new JPanelAlumnoDetalles();
-                ShowPanel(pad, content);
-                pad.Imagenes();
-                break;
+//            case "AlumnoActualizar":
+//                JPanelActualizarAlumno paa = new JPanelActualizarAlumno();
+//                ShowPanel(pad, content);
+//                pad.Imagenes();
+//                break;
 
             case "AlumnoCrear":
                 JPanelCrearAlumno pca = new JPanelCrearAlumno();

@@ -52,7 +52,7 @@
                       <Component id="PanelLogo" alignment="0" max="32767" attributes="0"/>
                       <Component id="PanelBuscar" alignment="0" pref="768" max="32767" attributes="0"/>
                       <Component id="jPanel2" alignment="0" max="32767" attributes="0"/>
-                      <Component id="LabelMsjBuscar" alignment="0" max="32767" attributes="0"/>
+                      <Component id="MsjFeedback" alignment="0" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
@@ -68,7 +68,7 @@
                   <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
                   <Component id="PanelBuscar" min="-2" pref="30" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="LabelMsjBuscar" min="-2" pref="24" max="-2" attributes="0"/>
+                  <Component id="MsjFeedback" min="-2" pref="24" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="56" max="-2" attributes="0"/>
                   <Component id="jPanel2" min="-2" pref="35" max="-2" attributes="0"/>
                   <EmptySpace pref="118" max="32767" attributes="0"/>
@@ -186,7 +186,7 @@
             </Component>
           </SubComponents>
         </Container>
-        <Component class="javax.swing.JLabel" name="LabelMsjBuscar">
+        <Component class="javax.swing.JLabel" name="MsjFeedback">
           <Properties>
             <Property name="horizontalAlignment" type="int" value="0"/>
           </Properties>

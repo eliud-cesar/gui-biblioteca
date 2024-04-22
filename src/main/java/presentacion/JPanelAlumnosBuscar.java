@@ -3,11 +3,11 @@ package presentacion;
 import java.awt.Color;
 import java.util.Timer;
 import java.util.TimerTask;
+import logica.negocios.OpsAlumnos;
+import static presentacion.Principal.content;
 
 public class JPanelAlumnosBuscar extends javax.swing.JPanel {
-    // TIMER
-    Timer timer = new Timer();
-
+    
     public JPanelAlumnosBuscar() {
         initComponents();
     }
@@ -24,7 +24,7 @@ public class JPanelAlumnosBuscar extends javax.swing.JPanel {
         jButton1 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jButton2 = new javax.swing.JButton();
-        LabelMsjBuscar = new javax.swing.JLabel();
+        MsjFeedback = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
 
         setMinimumSize(new java.awt.Dimension(780, 540));
@@ -80,7 +80,7 @@ public class JPanelAlumnosBuscar extends javax.swing.JPanel {
         });
         jPanel2.add(jButton2);
 
-        LabelMsjBuscar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        MsjFeedback.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Busca ID del alumno ");
@@ -96,7 +96,7 @@ public class JPanelAlumnosBuscar extends javax.swing.JPanel {
                     .addComponent(PanelLogo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(PanelBuscar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 768, Short.MAX_VALUE)
                     .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(LabelMsjBuscar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(MsjFeedback, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -109,7 +109,7 @@ public class JPanelAlumnosBuscar extends javax.swing.JPanel {
                 .addGap(8, 8, 8)
                 .addComponent(PanelBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(LabelMsjBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(MsjFeedback, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(56, 56, 56)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(118, Short.MAX_VALUE))
@@ -129,7 +129,7 @@ public class JPanelAlumnosBuscar extends javax.swing.JPanel {
 
     // BOTON DE BUSCAR
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        ValidarAlumnoBuscar();
+        OpsAlumnos.buscarAlumno(TextoBuscarAlumno, MsjFeedback);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     // BOTON DE CREAR UN ALUMNO
@@ -139,36 +139,11 @@ public class JPanelAlumnosBuscar extends javax.swing.JPanel {
 
     private void TextoBuscarAlumnoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TextoBuscarAlumnoKeyPressed
         if(evt.getKeyChar() == 10) {
-            ValidarAlumnoBuscar();
+            OpsAlumnos.buscarAlumno(TextoBuscarAlumno, MsjFeedback);
         }
     }//GEN-LAST:event_TextoBuscarAlumnoKeyPressed
-    
-    // METODO QUE VALIDA SI EL ALUMNO ES CORRECTO (POR EL MOMENTO ES SOLO VALIDAR SI ES IGUAL A UNO QUE SE PUSO POR CODIGO)
-    private void ValidarAlumnoBuscar() {
-        if(TextoBuscarAlumno.getText().equals("22060023")){
-            MensajeBuscar(Color.blue, "Cargando alumno");
-            timer.schedule(task, 2000);
-        } else {
-            MensajeBuscar(Color.red, "El usuario no existe");
-        }
-    }
-    
-    // METODO PARA ENVIAR EL MSJ DE FEEDBACK AL BUSCAR ALUMNO
-    private void MensajeBuscar(Color colorFont, String msj) {
-        LabelMsjBuscar.removeAll();
-        LabelMsjBuscar.setText("");
-        LabelMsjBuscar.setForeground(colorFont);
-        LabelMsjBuscar.setText(msj);
-    }
-    
-    // METODO PARA ENVIAR EL PANEL DEL ALUMNO CON DETALLES DESPUES DE UNOS MILISEGUNDOS
-    TimerTask task = new TimerTask() {
-        public void run() {
-            Utilidades.MostarPanelesMain("AlumnoDetalles");
-        }
-    };
-
-    public void Imgs() {
+        
+        public void Imgs() {
         ImgGorroEstudiante.setSize(150, 150);
         Utilidades u = new Utilidades();
         u.AsignarDimensionesImg(ImgGorroEstudiante, "gorroEstudiante.png");
@@ -177,7 +152,7 @@ public class JPanelAlumnosBuscar extends javax.swing.JPanel {
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public static javax.swing.JLabel ImgGorroEstudiante;
-    private javax.swing.JLabel LabelMsjBuscar;
+    private javax.swing.JLabel MsjFeedback;
     private javax.swing.JPanel PanelBuscar;
     private javax.swing.JPanel PanelLogo;
     private javax.swing.JTextField TextoBuscarAlumno;

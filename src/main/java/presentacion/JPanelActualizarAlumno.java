@@ -2,10 +2,14 @@ package presentacion;
 
 import logica.negocios.OpsAlumnos;
 
-public class JPanelCrearAlumno extends javax.swing.JPanel {
+public class JPanelActualizarAlumno extends javax.swing.JPanel {
 
-    public JPanelCrearAlumno() {
+    int matri;
+    
+    public JPanelActualizarAlumno(int matricula) {
         initComponents();
+        matri = matricula;
+        OpsAlumnos.mostarAlumnoActualizar(matri, TxtNombre, TxtApellidos, TxtEmail);
     }
 
     @SuppressWarnings("unchecked")
@@ -16,103 +20,97 @@ public class JPanelCrearAlumno extends javax.swing.JPanel {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
-        TxtMatricula = new javax.swing.JTextField();
-        jPanel3 = new javax.swing.JPanel();
         TxtNombre = new javax.swing.JTextField();
+        jPanel3 = new javax.swing.JPanel();
+        TxtApellidos = new javax.swing.JTextField();
         jPanel4 = new javax.swing.JPanel();
-        TxtApellido = new javax.swing.JTextField();
-        jPanel5 = new javax.swing.JPanel();
         TxtEmail = new javax.swing.JTextField();
         jPanel6 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
         jPanel7 = new javax.swing.JPanel();
-        jButton3 = new javax.swing.JButton();
-        MsjFeedbackCrearAlumno = new javax.swing.JLabel();
+        BtnActualizar = new javax.swing.JButton();
+        MsjFeedbackActualizar = new javax.swing.JLabel();
+        jPanel8 = new javax.swing.JPanel();
+        BtnCancelar = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setMinimumSize(new java.awt.Dimension(780, 540));
+        setPreferredSize(new java.awt.Dimension(780, 540));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 32)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Crear nuevo alumno");
+        jLabel1.setText("Actualizar el alumno");
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("Matricula");
+        jLabel2.setText("Nombre");
 
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel3.setText("Nombre(s)");
+        jLabel3.setText("Apellidos");
 
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel4.setText("Apellidos");
-
-        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel5.setText("Correo electronico");
+        jLabel4.setText("Email");
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setPreferredSize(new java.awt.Dimension(749, 34));
         jPanel2.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 0, 0));
 
-        TxtMatricula.setPreferredSize(new java.awt.Dimension(250, 34));
-        jPanel2.add(TxtMatricula);
+        TxtNombre.setPreferredSize(new java.awt.Dimension(250, 34));
+        jPanel2.add(TxtNombre);
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
         jPanel3.setPreferredSize(new java.awt.Dimension(749, 34));
         jPanel3.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 0, 0));
 
-        TxtNombre.setPreferredSize(new java.awt.Dimension(250, 34));
-        jPanel3.add(TxtNombre);
+        TxtApellidos.setPreferredSize(new java.awt.Dimension(250, 34));
+        jPanel3.add(TxtApellidos);
 
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
         jPanel4.setPreferredSize(new java.awt.Dimension(749, 34));
         jPanel4.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 0, 0));
 
-        TxtApellido.setPreferredSize(new java.awt.Dimension(250, 34));
-        jPanel4.add(TxtApellido);
-
-        jPanel5.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel5.setPreferredSize(new java.awt.Dimension(749, 34));
-        jPanel5.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 0, 0));
-
         TxtEmail.setPreferredSize(new java.awt.Dimension(250, 34));
-        jPanel5.add(TxtEmail);
+        jPanel4.add(TxtEmail);
 
         jPanel6.setBackground(new java.awt.Color(255, 255, 255));
         jPanel6.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 0, 0));
 
-        jButton1.setBackground(new java.awt.Color(33, 150, 243));
-        jButton1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/agregar.png"))); // NOI18N
-        jButton1.setText("Crear");
-        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButton1.setPreferredSize(new java.awt.Dimension(100, 34));
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-        jPanel6.add(jButton1);
-
         jPanel7.setBackground(new java.awt.Color(255, 255, 255));
         jPanel7.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 0, 0));
+        jPanel6.add(jPanel7);
 
-        jButton3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jButton3.setForeground(new java.awt.Color(33, 150, 243));
-        jButton3.setText("Cancelar");
-        jButton3.setPreferredSize(new java.awt.Dimension(100, 34));
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        BtnActualizar.setBackground(new java.awt.Color(33, 150, 243));
+        BtnActualizar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        BtnActualizar.setForeground(new java.awt.Color(255, 255, 255));
+        BtnActualizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/actualizar.png"))); // NOI18N
+        BtnActualizar.setText("Actualizar");
+        BtnActualizar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        BtnActualizar.setIconTextGap(12);
+        BtnActualizar.setPreferredSize(new java.awt.Dimension(150, 34));
+        BtnActualizar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                BtnActualizarActionPerformed(evt);
             }
         });
-        jPanel7.add(jButton3);
+        jPanel6.add(BtnActualizar);
 
-        MsjFeedbackCrearAlumno.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        MsjFeedbackCrearAlumno.setMinimumSize(new java.awt.Dimension(0, 18));
-        MsjFeedbackCrearAlumno.setPreferredSize(new java.awt.Dimension(0, 18));
+        MsjFeedbackActualizar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        MsjFeedbackActualizar.setMinimumSize(new java.awt.Dimension(0, 18));
+        MsjFeedbackActualizar.setPreferredSize(new java.awt.Dimension(0, 18));
+
+        jPanel8.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel8.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 0, 0));
+
+        BtnCancelar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        BtnCancelar.setForeground(new java.awt.Color(33, 150, 243));
+        BtnCancelar.setText("Cancelar");
+        BtnCancelar.setPreferredSize(new java.awt.Dimension(100, 34));
+        BtnCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnCancelarActionPerformed(evt);
+            }
+        });
+        jPanel8.add(BtnCancelar);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -121,8 +119,6 @@ public class JPanelCrearAlumno extends javax.swing.JPanel {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(15, 15, 15)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(MsjFeedbackCrearAlumno, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -130,9 +126,9 @@ public class JPanelCrearAlumno extends javax.swing.JPanel {
                     .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 747, Short.MAX_VALUE)
                     .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 747, Short.MAX_VALUE)
                     .addComponent(jPanel4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 747, Short.MAX_VALUE)
-                    .addComponent(jPanel5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 747, Short.MAX_VALUE)
-                    .addComponent(jPanel6, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel7, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jPanel8, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(MsjFeedbackActualizar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18))
         );
         layout.setVerticalGroup(
@@ -152,48 +148,41 @@ public class JPanelCrearAlumno extends javax.swing.JPanel {
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel5)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(MsjFeedbackCrearAlumno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 47, Short.MAX_VALUE)
-                .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(MsjFeedbackActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 127, Short.MAX_VALUE)
+                .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(21, 21, 21))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        OpsAlumnos.crearAlumno(TxtMatricula, TxtNombre, TxtApellido, TxtEmail, MsjFeedbackCrearAlumno);
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void BtnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnActualizarActionPerformed
+        OpsAlumnos.btnActualizarAlumno(matri, TxtNombre, TxtApellidos, TxtEmail, MsjFeedbackActualizar);
+    }//GEN-LAST:event_BtnActualizarActionPerformed
 
-    // BOTON PARA CANCELAR EL CREAR ALUMNO Y VOLVER A LA PAGINA DE BUSCAR ALUMNO
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void BtnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCancelarActionPerformed
         Utilidades.MostarPanelesMain("AlumnoBuscar");
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_BtnCancelarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel MsjFeedbackCrearAlumno;
-    private javax.swing.JTextField TxtApellido;
+    private javax.swing.JButton BtnActualizar;
+    private javax.swing.JButton BtnCancelar;
+    private javax.swing.JLabel MsjFeedbackActualizar;
+    private javax.swing.JTextField TxtApellidos;
     private javax.swing.JTextField TxtEmail;
-    private javax.swing.JTextField TxtMatricula;
     private javax.swing.JTextField TxtNombre;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
+    private javax.swing.JPanel jPanel8;
     // End of variables declaration//GEN-END:variables
 }
