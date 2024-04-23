@@ -6,7 +6,9 @@ presentacion\JPanelLibros$2.class
 datos\Libro.class
 logica\negocios\OpsAlumnos$1.class
 presentacion\Principal$3.class
+presentacion\Principal$6.class
 presentacion\JPanelPrestamos$1.class
+presentacion\JPanelAlumnosGenerales.class
 presentacion\JPanelAlumnosBuscar$3.class
 presentacion\Principal.class
 presentacion\ProyectoGuiArrayList.class
@@ -28,8 +30,11 @@ presentacion\JPanelPresentacion$2.class
 presentacion\Principal$1.class
 presentacion\JPanelCrearAlumno$2.class
 datos\Prestamo.class
+presentacion\JPanelAlumnosGenerales$1.class
+presentacion\JPanelAlumnosBuscar$4.class
 presentacion\JPanelAlumnosBuscar.class
 presentacion\JPanelAlumnoDetalles.class
+logica\negocios\RenderListAlumnosAll.class
 presentacion\JPanelCrearAlumno.class
 presentacion\JPanelAlumnosBuscar$1.class
 logica\negocios\OpsAlumnos$3.class

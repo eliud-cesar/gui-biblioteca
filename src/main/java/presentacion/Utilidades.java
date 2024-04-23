@@ -14,8 +14,6 @@ import javax.swing.table.TableColumn;
 import static presentacion.Principal.content;
 
 public class Utilidades {
-    Timer timer;
-    
     // CODIGO PARA PODER AGREGAR UN CHECKBOX A UNA COLUMNA DE UNA TABLA
     public static void addCheckBox(int column, JTable table) {
         TableColumn tc = table.getColumnModel().getColumn(column);

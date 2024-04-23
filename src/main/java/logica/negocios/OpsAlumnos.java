@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.regex.Pattern;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -13,6 +14,7 @@ import javax.swing.JTextField;
 import presentacion.JPanelAlumnoDetalles;
 import presentacion.JPanelAlumnosBuscar;
 import javax.swing.JPanel;
+import presentacion.JPanelAlumnosGenerales;
 import static presentacion.Principal.content;
 import presentacion.Utilidades;
 
@@ -44,6 +46,14 @@ public class OpsAlumnos {
         
         if(HashMapAlumnos.containsKey(matriConver)) {
             msjFeedback(msj, "Ya existe un alumno con la misma matricula", Color.red);
+            return;
+        }
+        
+        // VALIDAR EL FORMATO DEL EMAIL
+        String regexEmail = "^[a-zA-Z-\\.0-9_]+@[a-z]+\\.[a-z]+$";
+        boolean isEmailValido = Pattern.matches(regexEmail, email.getText());
+        if(!isEmailValido) {
+            msjFeedback(msj, "El formato del email no es valido.", Color.red);
             return;
         }
         
@@ -114,6 +124,17 @@ public class OpsAlumnos {
         msjFeedback(msj, "El usuario no existe", Color.red);
     }
     
+    // CONSULTA GENERAL
+    public static void consultarTodosAlumnos(JLabel msj) {
+        if(HashMapAlumnos.size() == 0) {
+            msjFeedback(msj, "No hay alumnos registrados", Color.red);
+            return;
+        }
+        
+        JPanelAlumnosGenerales pag = new JPanelAlumnosGenerales(HashMapAlumnos);
+        Utilidades.ShowPanel(pag, content);
+    }
+    
     // METODO PARA VER LOS DETALLES DEL ALUMNO QUE SE BUSCO
     public static void detallesAlumno(int matri, JLabel nombre, JLabel matricula, JLabel email, JLabel inscrito, JLabel sancionado, JLabel descripSancionado, JPanel panelInscrito, JPanel panelSancionado, JButton btnBaja) {
         if(!HashMapAlumnos.containsKey(matri)) {
@@ -166,6 +187,14 @@ public class OpsAlumnos {
                 return;
             }
             
+            // VALIDAR EL FORMATO DEL EMAIL
+            String regexEmail = "^[a-zA-Z-\\.0-9_]+@[a-z]+\\.[a-z]+$";
+            boolean isEmailValido = Pattern.matches(regexEmail, email.getText());
+            if(!isEmailValido) {
+                msjFeedback(msj, "El formato del email no es valido.", Color.red);
+                return;
+            }
+            
             HashMapAlumnos.get(matri).setNombre(nombre.getText());
             HashMapAlumnos.get(matri).setApellidos(apellido.getText());
             HashMapAlumnos.get(matri).setEmail(email.getText());
@@ -173,12 +202,14 @@ public class OpsAlumnos {
             // MOSTRAR PANEL BUSCAR CUANDO ACTUALICE LOS DATOS
             TimerTask panelBuscar = new TimerTask() {
                 public void run() {
-                    Utilidades.MostarPanelesMain("AlumnoBuscar");
+                    pad = new JPanelAlumnoDetalles(matri);
+                    Utilidades.ShowPanel(pad, content);
+                    pad.Imagenes();
                 }
             };
             
             msjFeedback(msj, "Alumno actualizado correctamente", Color.blue);
-            timer.schedule(panelBuscar, 800);
+            timer.schedule(panelBuscar, 700);
         } catch (Exception e) {
             msjFeedback(msj, "Error 500 - Boton Actualizar", Color.red);
         }

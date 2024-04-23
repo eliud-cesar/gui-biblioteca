@@ -37,6 +37,7 @@ public class Principal extends javax.swing.JFrame {
         BtnInicio2 = new javax.swing.JButton();
         BtnInicio5 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
+        BtnInicio4 = new javax.swing.JButton();
         jPEncabezado = new javax.swing.JPanel();
         content = new javax.swing.JPanel();
 
@@ -123,6 +124,19 @@ public class Principal extends javax.swing.JFrame {
         jLabel2.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jLabel2.setFocusCycleRoot(true);
 
+        BtnInicio4.setFont(new java.awt.Font("Microsoft YaHei UI", 0, 14)); // NOI18N
+        BtnInicio4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cerrar-sesion.png"))); // NOI18N
+        BtnInicio4.setText("Salir del sistema");
+        BtnInicio4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        BtnInicio4.setFocusPainted(false);
+        BtnInicio4.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        BtnInicio4.setIconTextGap(8);
+        BtnInicio4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnInicio4ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPMenuLayout = new javax.swing.GroupLayout(jPMenu);
         jPMenu.setLayout(jPMenuLayout);
         jPMenuLayout.setHorizontalGroup(
@@ -142,7 +156,8 @@ public class Principal extends javax.swing.JFrame {
                             .addComponent(BtnInicio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(BtnInicio1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(BtnInicio2, javax.swing.GroupLayout.DEFAULT_SIZE, 228, Short.MAX_VALUE)
-                            .addComponent(BtnInicio5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(BtnInicio5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(BtnInicio4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPMenuLayout.setVerticalGroup(
@@ -160,7 +175,9 @@ public class Principal extends javax.swing.JFrame {
                 .addComponent(BtnInicio2, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(BtnInicio1, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(346, 346, 346))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 296, Short.MAX_VALUE)
+                .addComponent(BtnInicio4, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(56, 56, 56))
         );
 
         jPEncabezado.setBackground(new java.awt.Color(240, 242, 245));
@@ -217,7 +234,7 @@ public class Principal extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPFondo, javax.swing.GroupLayout.DEFAULT_SIZE, 666, Short.MAX_VALUE)
+            .addComponent(jPFondo, javax.swing.GroupLayout.DEFAULT_SIZE, 717, Short.MAX_VALUE)
         );
 
         pack();
@@ -243,6 +260,10 @@ public class Principal extends javax.swing.JFrame {
         Utilidades.MostarPanelesMain("AlumnoBuscar");
     }//GEN-LAST:event_BtnInicio1ActionPerformed
 
+    private void BtnInicio4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnInicio4ActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_BtnInicio4ActionPerformed
+
     public static void main(String args[]) {
         FlatMacLightLaf.setup();
         UIManager.put( "Component.hideMnemonics", false );
@@ -261,6 +282,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JButton BtnInicio1;
     private javax.swing.JButton BtnInicio2;
     private javax.swing.JButton BtnInicio3;
+    private javax.swing.JButton BtnInicio4;
     private javax.swing.JButton BtnInicio5;
     public static javax.swing.JPanel content;
     private javax.swing.JLabel jLabel1;

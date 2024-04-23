@@ -1,10 +1,6 @@
 package presentacion;
 
-import java.awt.Color;
-import java.util.Timer;
-import java.util.TimerTask;
 import logica.negocios.OpsAlumnos;
-import static presentacion.Principal.content;
 
 public class JPanelAlumnosBuscar extends javax.swing.JPanel {
     
@@ -24,6 +20,7 @@ public class JPanelAlumnosBuscar extends javax.swing.JPanel {
         jButton1 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jButton2 = new javax.swing.JButton();
+        BtnAlumnosGeneral = new javax.swing.JButton();
         MsjFeedback = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
 
@@ -68,7 +65,7 @@ public class JPanelAlumnosBuscar extends javax.swing.JPanel {
         PanelBuscar.add(jButton1);
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel2.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 0, 0));
+        jPanel2.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 24, 0));
 
         jButton2.setForeground(new java.awt.Color(33, 150, 243));
         jButton2.setText("Crear nuevo alumno");
@@ -79,6 +76,16 @@ public class JPanelAlumnosBuscar extends javax.swing.JPanel {
             }
         });
         jPanel2.add(jButton2);
+
+        BtnAlumnosGeneral.setForeground(new java.awt.Color(33, 150, 243));
+        BtnAlumnosGeneral.setText("Todos los alumnos");
+        BtnAlumnosGeneral.setPreferredSize(new java.awt.Dimension(150, 35));
+        BtnAlumnosGeneral.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnAlumnosGeneralActionPerformed(evt);
+            }
+        });
+        jPanel2.add(BtnAlumnosGeneral);
 
         MsjFeedback.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
@@ -142,6 +149,10 @@ public class JPanelAlumnosBuscar extends javax.swing.JPanel {
             OpsAlumnos.buscarAlumno(TextoBuscarAlumno, MsjFeedback);
         }
     }//GEN-LAST:event_TextoBuscarAlumnoKeyPressed
+
+    private void BtnAlumnosGeneralActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAlumnosGeneralActionPerformed
+        OpsAlumnos.consultarTodosAlumnos(MsjFeedback);
+    }//GEN-LAST:event_BtnAlumnosGeneralActionPerformed
         
         public void Imgs() {
         ImgGorroEstudiante.setSize(150, 150);
@@ -151,6 +162,7 @@ public class JPanelAlumnosBuscar extends javax.swing.JPanel {
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BtnAlumnosGeneral;
     public static javax.swing.JLabel ImgGorroEstudiante;
     private javax.swing.JLabel MsjFeedback;
     private javax.swing.JPanel PanelBuscar;
