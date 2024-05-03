@@ -7,7 +7,7 @@ public class Libro {
     private String titulo;
     private String autor;
     private String editorial;
-    private LocalDate añoPublicacion;
+    private LocalDate fechaPublicacion;
     private String categoria;
     private int cantidadDisponible;
 
@@ -70,15 +70,15 @@ public class Libro {
     /**
      * @return the añoPublicacion
      */
-    public LocalDate getAñoPublicacion() {
-        return añoPublicacion;
+    public LocalDate getFechaPublicacion() {
+        return fechaPublicacion;
     }
 
     /**
      * @param añoPublicacion the añoPublicacion to set
      */
-    public void setAñoPublicacion(LocalDate añoPublicacion) {
-        this.añoPublicacion = añoPublicacion;
+    public void setFechaPublicacion(LocalDate añoPublicacion) {
+        this.fechaPublicacion = añoPublicacion;
     }
 
     /**

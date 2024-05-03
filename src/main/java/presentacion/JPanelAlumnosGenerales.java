@@ -2,14 +2,14 @@ package presentacion;
 
 import datos.Alumno;
 import java.util.Map;
-import logica.negocios.RenderListAlumnosAll;
+import logica.negocios.RenderListAlumnos;
 
 public class JPanelAlumnosGenerales extends javax.swing.JPanel {
-    private RenderListAlumnosAll modelo;
+    private RenderListAlumnos modelo;
 
     public JPanelAlumnosGenerales(Map<Integer, Alumno> initialHash) {
         initComponents();
-        modelo = new RenderListAlumnosAll(initialHash);
+        modelo = new RenderListAlumnos(initialHash);
         TableAlumnos.setModel(modelo);
         
     }

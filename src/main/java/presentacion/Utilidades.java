@@ -72,13 +72,7 @@ public class Utilidades {
                 ShowPanel(pab, content);
                 pab.Imgs();
                 break;
-
-//            case "AlumnoActualizar":
-//                JPanelActualizarAlumno paa = new JPanelActualizarAlumno();
-//                ShowPanel(pad, content);
-//                pad.Imagenes();
-//                break;
-
+                
             case "AlumnoCrear":
                 JPanelCrearAlumno pca = new JPanelCrearAlumno();
                 ShowPanel(pca, content);
