@@ -7,7 +7,23 @@ public class Alumno {
     private String apellidos;
     private String email;
     private boolean esIncrito;
-    private boolean esSancionado;
+//    private boolean esSancionado;
+    private boolean esActivoPrestamo;
+//    private int 
+
+    /**
+     * @return the esActivoPrestamo
+     */
+    public boolean isEsActivoPrestamo() {
+        return esActivoPrestamo;
+    }
+
+    /**
+     * @param esActivoPrestamo the esActivoPrestamo to set
+     */
+    public void setEsActivoPrestamo(boolean esActivoPrestamo) {
+        this.esActivoPrestamo = esActivoPrestamo;
+    }
 
     /**
      * @return the idAlumno
@@ -79,17 +95,4 @@ public class Alumno {
         this.esIncrito = esIncrito;
     }
 
-    /**
-     * @return the esSancionado
-     */
-    public boolean isEsSancionado() {
-        return esSancionado;
-    }
-
-    /**
-     * @param esSancionado the esSancionado to set
-     */
-    public void setEsSancionado(boolean esSancionado) {
-        this.esSancionado = esSancionado;
-    }
 }

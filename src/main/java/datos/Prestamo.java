@@ -8,20 +8,20 @@ public class Prestamo {
     private int idAlumno;
     private LocalDate fechaPrestamo;
     private LocalDate fechaDevolucion;
-    private boolean estadoDevolucion;
+    private boolean devuelto;
 
     /**
      * @return the estadoDevolucion
      */
-    public boolean isEstadoDevolucion() {
-        return estadoDevolucion;
+    public boolean isDevuelto() {
+        return devuelto;
     }
 
     /**
      * @param estadoDevolucion the estadoDevolucion to set
      */
-    public void setEstadoDevolucion(boolean estadoDevolucion) {
-        this.estadoDevolucion = estadoDevolucion;
+    public void setDevuelto(boolean estadoDevolucion) {
+        this.devuelto = estadoDevolucion;
     }
 
     /**

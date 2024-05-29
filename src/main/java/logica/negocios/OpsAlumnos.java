@@ -20,7 +20,7 @@ import presentacion.Utilidades;
 
 public class OpsAlumnos {
     static Alumno estudiante;
-    static Map<Integer, Alumno> HashMapAlumnos = new HashMap<>();
+    public static Map<Integer, Alumno> HashMapAlumnos = new HashMap<>();
     static int matriculaGlobal = 0;
     static JPanelAlumnoDetalles pad;
 
@@ -71,7 +71,7 @@ public class OpsAlumnos {
             estudiante.setApellidos(apellido.getText());
             estudiante.setEmail(email.getText());
             estudiante.setEsIncrito(true);
-            estudiante.setEsSancionado(false);
+            estudiante.setEsActivoPrestamo(false);
             
             HashMapAlumnos.put(matriConver, estudiante);
             
@@ -136,7 +136,7 @@ public class OpsAlumnos {
     }
     
     // METODO PARA VER LOS DETALLES DEL ALUMNO QUE SE BUSCO
-    public static void detallesAlumno(int matri, JLabel nombre, JLabel matricula, JLabel email, JLabel inscrito, JLabel sancionado, JLabel descripSancionado, JPanel panelInscrito, JPanel panelSancionado, JButton btnBaja) {
+    public static void detallesAlumno(int matri, JLabel nombre, JLabel matricula, JLabel email, JLabel inscrito, JLabel prestamo, JLabel descPrestamo, JPanel panelInscrito, JPanel panelPrestamo, JButton btnBaja) {
         if(!HashMapAlumnos.containsKey(matri)) {
             JOptionPane.showMessageDialog(null, "Error 500 - Detalles");
             return;
@@ -150,7 +150,7 @@ public class OpsAlumnos {
         // VALIDAR SI ESTA INSCRITO
         validInscrito(matri, panelInscrito, inscrito, btnBaja);
         // VALIDAR SI ESTA SANCIONADO        
-        validSancionado(matri, panelSancionado, sancionado, descripSancionado);
+        validPrestamo(matri, panelPrestamo, prestamo, descPrestamo);
     }
     
     // METODO DE ELIMINAR ALUMNO
@@ -245,22 +245,22 @@ public class OpsAlumnos {
         }
     }
 
-    // VALID SANCIONADO
-    private static void validSancionado(int matri, JPanel panelSancionado, JLabel sancionado, JLabel descripSancionado) {
-        // ENVIAR EL DATO SI ESTA SANCIONADO
-        if(HashMapAlumnos.get(matri).isEsSancionado()) {
-            panelSancionado.setBackground(new Color(252,234,228));
-            sancionado.removeAll();
-            sancionado.setForeground(new Color(255,57,57));
-            sancionado.setText("Sancionado");
-            descripSancionado.setText("Tiene una devolucion pendiente");
+    // VALID PRESTAMO
+    public static void validPrestamo(int matri, JPanel panelPrestamo, JLabel prestamo, JLabel descripPrestamo) {
+        // ENVIAR EL DATO SI TIENE UN PRESTAMO
+        if(HashMapAlumnos.get(matri).isEsActivoPrestamo()) {
+            panelPrestamo.setBackground(new Color(255, 183, 183));
+            prestamo.removeAll();
+            prestamo.setForeground(new Color(255, 28, 28));
+            prestamo.setText("Prestamo activo");
+            descripPrestamo.setText("Tiene una prestamo en curso");
         } else {
-            // EN CASO DE QUE NO TENGA SANCION
-            panelSancionado.setBackground(new Color(199,248,214));
-            sancionado.removeAll();
-            sancionado.setForeground(Color.BLACK);
-            sancionado.setText("Aprobado");
-            descripSancionado.setText("Todo en orden");
+            // EN CASO DE QUE NO TENGA UN PRESTAMO
+            panelPrestamo.setBackground(new Color(168, 225, 255));
+            prestamo.removeAll();
+            prestamo.setForeground(Color.BLACK);
+            prestamo.setText("Sin prestamos");
+            descripPrestamo.setText("Todo en orden, no tiene prestamos en curso");
         }
     }
     

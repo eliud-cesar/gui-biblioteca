@@ -10,10 +10,12 @@ import logica.negocios.OpsLibros;
 import logica.negocios.RenderListLibros;
 
 public class JPanelLibros extends javax.swing.JPanel {
-    // METODO PARA FILTRAR LOS DATOS
-    private TableRowSorter TRSFiltro;
+
     // CLASE PARA RENDERIZAR LOS DATOS EN LA TABLA
     private RenderListLibros renderizado;
+    
+    // METODO PARA FILTRAR LOS DATOS
+    private TableRowSorter TRSFiltro;
     // VARIABLE PARA SABER SI HAY UNA FILA O REGISTRO SELECCIONADO
     private static boolean isSelectRow;
     // VARIABLE DEL ISBN DEL REGISTRO SELECCIONADO

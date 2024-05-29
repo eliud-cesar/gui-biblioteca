@@ -60,7 +60,7 @@
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="PanelActivo" pref="364" max="32767" attributes="0"/>
                               <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
-                              <Component id="PanelSancionado" pref="366" max="32767" attributes="0"/>
+                              <Component id="PanelPrestamo" pref="366" max="32767" attributes="0"/>
                           </Group>
                           <Component id="jScrollPane1" alignment="0" pref="748" max="32767" attributes="0"/>
                       </Group>
@@ -96,7 +96,7 @@
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                  <Component id="PanelSancionado" pref="86" max="32767" attributes="0"/>
+                  <Component id="PanelPrestamo" pref="86" max="32767" attributes="0"/>
                   <Component id="PanelActivo" min="-2" pref="86" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
@@ -260,7 +260,7 @@
         </Component>
       </SubComponents>
     </Container>
-    <Container class="javax.swing.JPanel" name="PanelSancionado">
+    <Container class="javax.swing.JPanel" name="PanelPrestamo">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -275,11 +275,11 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
-                  <Component id="ImgEsSancionado" min="-2" pref="70" max="-2" attributes="0"/>
+                  <Component id="ImgPrestamo" min="-2" pref="70" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Component id="AlumnoSancionado" alignment="0" pref="233" max="32767" attributes="0"/>
-                      <Component id="AlumnoSancionadoDescripcion" alignment="0" max="32767" attributes="0"/>
+                      <Component id="AlumnoPrestamo" alignment="0" pref="233" max="32767" attributes="0"/>
+                      <Component id="AlumnoPrestamoDescripcion" alignment="0" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace max="32767" attributes="0"/>
               </Group>
@@ -291,11 +291,11 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
                       <Group type="102" attributes="0">
-                          <Component id="AlumnoSancionado" min="-2" pref="37" max="-2" attributes="0"/>
+                          <Component id="AlumnoPrestamo" min="-2" pref="37" max="-2" attributes="0"/>
                           <EmptySpace max="32767" attributes="0"/>
-                          <Component id="AlumnoSancionadoDescripcion" min="-2" pref="27" max="-2" attributes="0"/>
+                          <Component id="AlumnoPrestamoDescripcion" min="-2" pref="27" max="-2" attributes="0"/>
                       </Group>
-                      <Component id="ImgEsSancionado" min="-2" pref="70" max="-2" attributes="0"/>
+                      <Component id="ImgPrestamo" min="-2" pref="70" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="32767" attributes="0"/>
               </Group>
@@ -303,12 +303,12 @@
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JLabel" name="ImgEsSancionado">
+        <Component class="javax.swing.JLabel" name="ImgPrestamo">
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
           </AuxValues>
         </Component>
-        <Component class="javax.swing.JLabel" name="AlumnoSancionado">
+        <Component class="javax.swing.JLabel" name="AlumnoPrestamo">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Microsoft YaHei" size="32" style="0"/>
@@ -318,7 +318,7 @@
             </Property>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="AlumnoSancionadoDescripcion">
+        <Component class="javax.swing.JLabel" name="AlumnoPrestamoDescripcion">
           <Properties>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="66" green="66" red="66" type="rgb"/>
@@ -334,7 +334,7 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
       <SubComponents>
-        <Component class="javax.swing.JTable" name="jTable1">
+        <Component class="javax.swing.JTable" name="TablaHistorial">
           <Properties>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
               <Table columnCount="4" rowCount="3">
@@ -364,6 +364,9 @@
           <Dimension value="[72, 35]"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton4ActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel9">
       <Properties>

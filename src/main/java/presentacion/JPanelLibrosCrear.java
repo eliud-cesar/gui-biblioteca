@@ -138,7 +138,7 @@ public class JPanelLibrosCrear extends javax.swing.JPanel {
         jPanel9.setPreferredSize(new java.awt.Dimension(749, 34));
         jPanel9.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 0, 0));
 
-        OptionsCategoria.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar", "Ciencias básicas", "Ciencias de la tierra", "Económico", "Administrativas", "Sistemas", "Lectura", "Computación" }));
+        OptionsCategoria.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar", "Ciencias básicas", "Ciencias de la tierra", "Económico y Administrativas", "Sistemas", "Lectura", "Computación" }));
         OptionsCategoria.setPreferredSize(new java.awt.Dimension(250, 34));
         jPanel9.add(OptionsCategoria);
 

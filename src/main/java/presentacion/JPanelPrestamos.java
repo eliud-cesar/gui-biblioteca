@@ -1,18 +1,34 @@
 package presentacion;
 
 import java.awt.Color;
-import javax.swing.JOptionPane;
-import javax.swing.table.DefaultTableModel;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import javax.swing.RowFilter;
+import javax.swing.table.TableRowSorter;
+import logica.negocios.OpsPrestamos;
+import logica.negocios.RenderListPrestamos;
 
 public class JPanelPrestamos extends javax.swing.JPanel {
-
-    DefaultTableModel modelo;
-    Utilidades u = new Utilidades();
     
+    // PARA RENDERIZAR LOS DATOS EN LA TABLA
+    private RenderListPrestamos renderizado;
+    
+    // METODO PARA FILTRAR LOS DATOS
+    private TableRowSorter TRSFiltro;
+    
+    // ACIONES ACTUALIZAR Y ELIMINAR
+    // VARIABLE PARA SABER SI HAY UNA FILA O REGISTRO SELECCIONADO
+    private static boolean isSelectRow;
+    // VARIABLE DEL ISBN DEL REGISTRO SELECCIONADO
+    private int IdPrestamoSelect;
+
     public JPanelPrestamos() {
         initComponents();
-        modelo = (DefaultTableModel) TablaContenidoPrestamos.getModel();
-        Utilidades.addCheckBox(0, TablaContenidoPrestamos);
+        renderizado = new RenderListPrestamos(OpsPrestamos.HashMapPrestamos);
+        TablaContenidoPrestamos.setModel(renderizado);
+        
+        isSelectRow = false;
+        IdPrestamoSelect = 0;
     }
 
     @SuppressWarnings("unchecked")
@@ -21,13 +37,14 @@ public class JPanelPrestamos extends javax.swing.JPanel {
 
         PanelAviso = new javax.swing.JPanel();
         Feedback = new javax.swing.JLabel();
-        BtnInicio = new javax.swing.JButton();
+        BtnNuevoPrestamo = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         TablaContenidoPrestamos = new javax.swing.JTable();
         jLabel3 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        BtnInicio1 = new javax.swing.JButton();
-        jTextField1 = new javax.swing.JTextField();
+        BtnEliminarPrestamo = new javax.swing.JButton();
+        TxtFiltro = new javax.swing.JTextField();
+        BtnActualizarPrestamo = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setMinimumSize(new java.awt.Dimension(780, 540));
@@ -35,6 +52,7 @@ public class JPanelPrestamos extends javax.swing.JPanel {
 
         PanelAviso.setBackground(new java.awt.Color(255, 255, 255));
 
+        Feedback.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         Feedback.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
         javax.swing.GroupLayout PanelAvisoLayout = new javax.swing.GroupLayout(PanelAviso);
@@ -51,17 +69,17 @@ public class JPanelPrestamos extends javax.swing.JPanel {
             .addComponent(Feedback, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
-        BtnInicio.setFont(new java.awt.Font("Microsoft YaHei UI", 1, 12)); // NOI18N
-        BtnInicio.setForeground(new java.awt.Color(33, 150, 243));
-        BtnInicio.setIcon(new javax.swing.ImageIcon(getClass().getResource("/agregar.png"))); // NOI18N
-        BtnInicio.setText("Nuevo prestamo");
-        BtnInicio.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        BtnInicio.setFocusPainted(false);
-        BtnInicio.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        BtnInicio.setIconTextGap(8);
-        BtnInicio.addActionListener(new java.awt.event.ActionListener() {
+        BtnNuevoPrestamo.setFont(new java.awt.Font("Microsoft YaHei UI", 1, 12)); // NOI18N
+        BtnNuevoPrestamo.setForeground(new java.awt.Color(33, 150, 243));
+        BtnNuevoPrestamo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/agregar.png"))); // NOI18N
+        BtnNuevoPrestamo.setText("Nuevo prestamo");
+        BtnNuevoPrestamo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        BtnNuevoPrestamo.setFocusPainted(false);
+        BtnNuevoPrestamo.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        BtnNuevoPrestamo.setIconTextGap(8);
+        BtnNuevoPrestamo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnInicioActionPerformed(evt);
+                BtnNuevoPrestamoActionPerformed(evt);
             }
         });
 
@@ -70,21 +88,25 @@ public class JPanelPrestamos extends javax.swing.JPanel {
 
             },
             new String [] {
-                "", "ID", "ISBN", "Alumno", "Fecha del prestamo", "Fecha de devolucion"
+                "ID", "Alumno", "ISBN", "Fecha del prestamo", "Fecha de devolucion"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Object.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.Integer.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
             }
         });
+        TablaContenidoPrestamos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                TablaContenidoPrestamosMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(TablaContenidoPrestamos);
         if (TablaContenidoPrestamos.getColumnModel().getColumnCount() > 0) {
-            TablaContenidoPrestamos.getColumnModel().getColumn(0).setMaxWidth(30);
-            TablaContenidoPrestamos.getColumnModel().getColumn(1).setMaxWidth(100);
+            TablaContenidoPrestamos.getColumnModel().getColumn(0).setMaxWidth(100);
         }
 
         jLabel3.setForeground(new java.awt.Color(102, 102, 102));
@@ -96,17 +118,42 @@ public class JPanelPrestamos extends javax.swing.JPanel {
         jLabel2.setText("Listado de los prestamos");
         jLabel2.setVerticalAlignment(javax.swing.SwingConstants.TOP);
 
-        BtnInicio1.setFont(new java.awt.Font("Microsoft YaHei UI", 1, 12)); // NOI18N
-        BtnInicio1.setForeground(new java.awt.Color(255, 51, 51));
-        BtnInicio1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/borrar.png"))); // NOI18N
-        BtnInicio1.setText("Eliminar prestamo");
-        BtnInicio1.setToolTipText("");
-        BtnInicio1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        BtnInicio1.setFocusPainted(false);
-        BtnInicio1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        BtnInicio1.setIconTextGap(8);
+        BtnEliminarPrestamo.setFont(new java.awt.Font("Microsoft YaHei UI", 1, 12)); // NOI18N
+        BtnEliminarPrestamo.setForeground(new java.awt.Color(255, 51, 51));
+        BtnEliminarPrestamo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/borrar.png"))); // NOI18N
+        BtnEliminarPrestamo.setText("Eliminar prestamo");
+        BtnEliminarPrestamo.setToolTipText("");
+        BtnEliminarPrestamo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        BtnEliminarPrestamo.setFocusPainted(false);
+        BtnEliminarPrestamo.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        BtnEliminarPrestamo.setIconTextGap(8);
+        BtnEliminarPrestamo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnEliminarPrestamoActionPerformed(evt);
+            }
+        });
 
-        jTextField1.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        TxtFiltro.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        TxtFiltro.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                TxtFiltroKeyTyped(evt);
+            }
+        });
+
+        BtnActualizarPrestamo.setFont(new java.awt.Font("Microsoft YaHei UI", 1, 12)); // NOI18N
+        BtnActualizarPrestamo.setForeground(new java.awt.Color(46, 164, 62));
+        BtnActualizarPrestamo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/actualizar-verde.png"))); // NOI18N
+        BtnActualizarPrestamo.setText("Actualizar prestamo");
+        BtnActualizarPrestamo.setToolTipText("");
+        BtnActualizarPrestamo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        BtnActualizarPrestamo.setFocusPainted(false);
+        BtnActualizarPrestamo.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        BtnActualizarPrestamo.setIconTextGap(8);
+        BtnActualizarPrestamo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnActualizarPrestamoActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -115,7 +162,7 @@ public class JPanelPrestamos extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 768, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1)
                     .addComponent(PanelAviso, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(6, 6, 6)
@@ -124,15 +171,17 @@ public class JPanelPrestamos extends javax.swing.JPanel {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(BtnInicio1)
-                                .addGap(0, 0, Short.MAX_VALUE))
+                                .addComponent(BtnNuevoPrestamo)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(BtnActualizarPrestamo)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(BtnEliminarPrestamo)
+                                .addGap(0, 55, Short.MAX_VALUE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addGap(0, 0, Short.MAX_VALUE)
                                 .addComponent(jLabel3)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jTextField1)
-                            .addComponent(BtnInicio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addComponent(TxtFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -142,44 +191,100 @@ public class JPanelPrestamos extends javax.swing.JPanel {
                 .addComponent(PanelAviso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(BtnInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(BtnInicio1, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(BtnNuevoPrestamo, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(BtnEliminarPrestamo, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(BtnActualizarPrestamo, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel2)
                 .addGap(1, 1, 1)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(TxtFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 379, Short.MAX_VALUE)
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    // BOTON PARA AGREGAR UNA NUEVA FILA
-    private void BtnInicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnInicioActionPerformed
-        try {
-            int newRow = modelo.getRowCount();
-            modelo.addRow(new Object[modelo.getColumnCount()]);
-            TablaContenidoPrestamos.changeSelection(newRow, 0, false, false);
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Error 500");
-            PanelAviso.setBackground(Color.red);
-        }
-        u.changeFeedback(Feedback, "Registro agregado", "check.png");
-        PanelAviso.setBackground(new Color(109,216,97));
-    }//GEN-LAST:event_BtnInicioActionPerformed
+    // BOTON PARA AGREGAR UN NUEVO REGISTRO
+    private void BtnNuevoPrestamoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnNuevoPrestamoActionPerformed
+        JPanelPrestamosCrear ppc = new JPanelPrestamosCrear();
+        Utilidades.ShowPanel(ppc, Principal.content);
+    }//GEN-LAST:event_BtnNuevoPrestamoActionPerformed
 
+    // BOTON PARA ACTUALIZAR EL PRESTAMO
+    private void BtnActualizarPrestamoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnActualizarPrestamoActionPerformed
+        if(isSelectRow == false) {
+            Feedback.setText("Selecciona un registro para actualizarlo. (da un click a la fila que quieres actualizar)");
+            Feedback.setForeground(Color.white);
+            PanelAviso.setBackground(Color.red);
+            return;
+        }
+        
+        if(OpsPrestamos.HashMapPrestamos.get(IdPrestamoSelect).isDevuelto()) {
+            Feedback.setText("El prestamo seleccionado ya esta devueldo, no puedes modificarlo");
+            Feedback.setForeground(Color.white);
+            PanelAviso.setBackground(Color.red);
+            return;
+        }
+        
+        JPanelPrestamosActualizar ppa = new JPanelPrestamosActualizar(IdPrestamoSelect);
+        Utilidades.ShowPanel(ppa, Principal.content);
+    }//GEN-LAST:event_BtnActualizarPrestamoActionPerformed
+
+    // BOTON PARA ELIMINAR PRESTAMO
+    private void BtnEliminarPrestamoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnEliminarPrestamoActionPerformed
+        if(isSelectRow == false) {
+            Feedback.setText("Selecciona un registro para eliminarlo. (Da click a la fila en la tabla)");
+            Feedback.setForeground(Color.white);
+            PanelAviso.setBackground(Color.red);
+            return;
+        }
+        
+        if(OpsPrestamos.HashMapPrestamos.get(IdPrestamoSelect).isDevuelto()) {
+            Feedback.setText("El prestamo seleccionado ya esta devueldo, no puedes eliminarlo");
+            Feedback.setForeground(Color.white);
+            PanelAviso.setBackground(Color.red);
+            return;
+        }
+        
+        OpsPrestamos.eliminarPrestamo(IdPrestamoSelect, Feedback, PanelAviso);
+    }//GEN-LAST:event_BtnEliminarPrestamoActionPerformed
+
+    // METODO CUANDO SE QUIERE FILTRAR UN PRESTAMO
+    private void TxtFiltroKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TxtFiltroKeyTyped
+        TxtFiltro.addKeyListener(new KeyAdapter() {
+            public void keyReleased (final KeyEvent e) {
+                String cadena = (TxtFiltro.getText());
+                TxtFiltro.setText(cadena);
+                Filtro();
+            }
+        });
+        TRSFiltro = new TableRowSorter(TablaContenidoPrestamos.getModel());
+        TablaContenidoPrestamos.setRowSorter(TRSFiltro);
+    }//GEN-LAST:event_TxtFiltroKeyTyped
+
+    private void TablaContenidoPrestamosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TablaContenidoPrestamosMouseClicked
+        int seleccionar = TablaContenidoPrestamos.rowAtPoint(evt.getPoint());
+        isSelectRow = true;
+        IdPrestamoSelect = Integer.parseInt(String.valueOf(TablaContenidoPrestamos.getValueAt(seleccionar, 0)));
+    }//GEN-LAST:event_TablaContenidoPrestamosMouseClicked
+
+    public void Filtro() {
+        int columnaTabla = 0;
+        TRSFiltro.setRowFilter(RowFilter.regexFilter(TxtFiltro.getText(), columnaTabla));
+    }    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton BtnInicio;
-    private javax.swing.JButton BtnInicio1;
+    private javax.swing.JButton BtnActualizarPrestamo;
+    private javax.swing.JButton BtnEliminarPrestamo;
+    private javax.swing.JButton BtnNuevoPrestamo;
     private javax.swing.JLabel Feedback;
     private javax.swing.JPanel PanelAviso;
     private javax.swing.JTable TablaContenidoPrestamos;
+    private javax.swing.JTextField TxtFiltro;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
 }

@@ -1,14 +1,33 @@
 package presentacion;
 
+import javax.swing.JOptionPane;
+import javax.swing.RowFilter;
+import javax.swing.table.TableRowSorter;
 import logica.negocios.OpsAlumnos;
+import logica.negocios.OpsPrestamos;
+import logica.negocios.RenderListPrestamos;
 
 public class JPanelAlumnoDetalles extends javax.swing.JPanel {
-
+    
+    private RenderListPrestamos renderizado;
+    private TableRowSorter TRSFiltro;
+    
     int matri;
     public JPanelAlumnoDetalles(int matricula) {
         initComponents();
         matri = matricula;
-        OpsAlumnos.detallesAlumno(matri, AlumnoNombre, AlumnoMatricula, AlumnoEmail, AlumnoInscrito, AlumnoSancionado, AlumnoSancionadoDescripcion, PanelActivo, PanelSancionado, BtnBaja);
+        OpsAlumnos.detallesAlumno(matri, AlumnoNombre, AlumnoMatricula, AlumnoEmail, AlumnoInscrito, AlumnoPrestamo, AlumnoPrestamoDescripcion, PanelActivo, PanelPrestamo, BtnBaja);
+        
+        // RENDERIZANDO EN LA TABLA
+        renderizado = new RenderListPrestamos(OpsPrestamos.HashMapPrestamos);
+        TablaHistorial.setModel(renderizado);
+        
+        // APLICANDOLE EL FILTRO
+        if(OpsPrestamos.HashMapPrestamos.size() > 0) {
+            TRSFiltro = new TableRowSorter(TablaHistorial.getModel());
+            TRSFiltro.setRowFilter(RowFilter.regexFilter(String.valueOf(matri), 1));
+            TablaHistorial.setRowSorter(TRSFiltro);
+        }
     }
 
     @SuppressWarnings("unchecked")
@@ -26,12 +45,12 @@ public class JPanelAlumnoDetalles extends javax.swing.JPanel {
         ImgEsInscrito = new javax.swing.JLabel();
         AlumnoInscrito = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        PanelSancionado = new javax.swing.JPanel();
-        ImgEsSancionado = new javax.swing.JLabel();
-        AlumnoSancionado = new javax.swing.JLabel();
-        AlumnoSancionadoDescripcion = new javax.swing.JLabel();
+        PanelPrestamo = new javax.swing.JPanel();
+        ImgPrestamo = new javax.swing.JLabel();
+        AlumnoPrestamo = new javax.swing.JLabel();
+        AlumnoPrestamoDescripcion = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        TablaHistorial = new javax.swing.JTable();
         jButton4 = new javax.swing.JButton();
         jLabel9 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
@@ -118,41 +137,41 @@ public class JPanelAlumnoDetalles extends javax.swing.JPanel {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        PanelSancionado.setBackground(new java.awt.Color(255, 255, 255));
-        PanelSancionado.setPreferredSize(new java.awt.Dimension(359, 100));
+        PanelPrestamo.setBackground(new java.awt.Color(255, 255, 255));
+        PanelPrestamo.setPreferredSize(new java.awt.Dimension(359, 100));
 
-        AlumnoSancionado.setFont(new java.awt.Font("Microsoft YaHei", 0, 32)); // NOI18N
-        AlumnoSancionado.setForeground(new java.awt.Color(255, 57, 57));
+        AlumnoPrestamo.setFont(new java.awt.Font("Microsoft YaHei", 0, 32)); // NOI18N
+        AlumnoPrestamo.setForeground(new java.awt.Color(255, 57, 57));
 
-        AlumnoSancionadoDescripcion.setForeground(new java.awt.Color(102, 102, 102));
+        AlumnoPrestamoDescripcion.setForeground(new java.awt.Color(102, 102, 102));
 
-        javax.swing.GroupLayout PanelSancionadoLayout = new javax.swing.GroupLayout(PanelSancionado);
-        PanelSancionado.setLayout(PanelSancionadoLayout);
-        PanelSancionadoLayout.setHorizontalGroup(
-            PanelSancionadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(PanelSancionadoLayout.createSequentialGroup()
+        javax.swing.GroupLayout PanelPrestamoLayout = new javax.swing.GroupLayout(PanelPrestamo);
+        PanelPrestamo.setLayout(PanelPrestamoLayout);
+        PanelPrestamoLayout.setHorizontalGroup(
+            PanelPrestamoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PanelPrestamoLayout.createSequentialGroup()
                 .addGap(18, 18, 18)
-                .addComponent(ImgEsSancionado, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(ImgPrestamo, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(PanelSancionadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(AlumnoSancionado, javax.swing.GroupLayout.DEFAULT_SIZE, 233, Short.MAX_VALUE)
-                    .addComponent(AlumnoSancionadoDescripcion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(PanelPrestamoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(AlumnoPrestamo, javax.swing.GroupLayout.DEFAULT_SIZE, 233, Short.MAX_VALUE)
+                    .addComponent(AlumnoPrestamoDescripcion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        PanelSancionadoLayout.setVerticalGroup(
-            PanelSancionadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(PanelSancionadoLayout.createSequentialGroup()
+        PanelPrestamoLayout.setVerticalGroup(
+            PanelPrestamoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PanelPrestamoLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(PanelSancionadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(PanelSancionadoLayout.createSequentialGroup()
-                        .addComponent(AlumnoSancionado, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(PanelPrestamoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(PanelPrestamoLayout.createSequentialGroup()
+                        .addComponent(AlumnoPrestamo, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(AlumnoSancionadoDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(ImgEsSancionado, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(AlumnoPrestamoDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(ImgPrestamo, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        TablaHistorial.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -162,12 +181,17 @@ public class JPanelAlumnoDetalles extends javax.swing.JPanel {
                 "ISBN", "Fecha de prestamo", "Fecha de devolucion", "Estado"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(TablaHistorial);
 
         jButton4.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jButton4.setForeground(new java.awt.Color(50, 140, 33));
         jButton4.setText("Devolver libro");
         jButton4.setPreferredSize(new java.awt.Dimension(72, 35));
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
         jLabel9.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel9.setText("Historial de prestamos del alumno");
@@ -214,7 +238,7 @@ public class JPanelAlumnoDetalles extends javax.swing.JPanel {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(PanelActivo, javax.swing.GroupLayout.DEFAULT_SIZE, 364, Short.MAX_VALUE)
                                 .addGap(18, 18, 18)
-                                .addComponent(PanelSancionado, javax.swing.GroupLayout.DEFAULT_SIZE, 366, Short.MAX_VALUE))
+                                .addComponent(PanelPrestamo, javax.swing.GroupLayout.DEFAULT_SIZE, 366, Short.MAX_VALUE))
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 748, Short.MAX_VALUE))
                         .addGap(16, 16, 16))))
         );
@@ -240,7 +264,7 @@ public class JPanelAlumnoDetalles extends javax.swing.JPanel {
                             .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(PanelSancionado, javax.swing.GroupLayout.DEFAULT_SIZE, 86, Short.MAX_VALUE)
+                    .addComponent(PanelPrestamo, javax.swing.GroupLayout.DEFAULT_SIZE, 86, Short.MAX_VALUE)
                     .addComponent(PanelActivo, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -271,36 +295,52 @@ public class JPanelAlumnoDetalles extends javax.swing.JPanel {
         Utilidades.ShowPanel(paa, Principal.content);
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    // DEVOLVER EL LIBRO
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        if(OpsAlumnos.HashMapAlumnos.get(matri).isEsActivoPrestamo()) {
+            int res = JOptionPane.showConfirmDialog(null, "¿Seguro de devolver el libro?");
+            if(res == 0) {
+                OpsPrestamos.devolverLibro(matri, PanelPrestamo, AlumnoPrestamo, AlumnoPrestamoDescripcion);
+                TablaHistorial.repaint();
+            }
+        }
+    }//GEN-LAST:event_jButton4ActionPerformed
+
     public void Imagenes() {
         ImgEsInscrito.setSize(70, 70);
-        ImgEsSancionado.setSize(70, 70);
+        ImgPrestamo.setSize(70, 70);
         ImgAvatar.setSize(150, 150);
         Utilidades u = new Utilidades();
         u.AsignarDimensionesImg(ImgAvatar, "avatar.png");
         u.AsignarDimensionesImg(ImgEsInscrito, "inscrito.png");
-        u.AsignarDimensionesImg(ImgEsSancionado, "sancion.png");
+        u.AsignarDimensionesImg(ImgPrestamo, "libros.png");
     }
+    
+//    public void Filtro() {
+//        int columnaTabla = 1;
+//        
+//    } 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel AlumnoEmail;
     private javax.swing.JLabel AlumnoInscrito;
     private javax.swing.JLabel AlumnoMatricula;
     private javax.swing.JLabel AlumnoNombre;
-    private javax.swing.JLabel AlumnoSancionado;
-    private javax.swing.JLabel AlumnoSancionadoDescripcion;
+    private javax.swing.JLabel AlumnoPrestamo;
+    private javax.swing.JLabel AlumnoPrestamoDescripcion;
     private javax.swing.JButton BtnBaja;
     private javax.swing.JButton BtnVolver;
     public static javax.swing.JLabel ImgAvatar;
     public static javax.swing.JLabel ImgEsInscrito;
-    public static javax.swing.JLabel ImgEsSancionado;
+    public static javax.swing.JLabel ImgPrestamo;
     private javax.swing.JPanel PanelActivo;
-    private javax.swing.JPanel PanelSancionado;
+    private javax.swing.JPanel PanelPrestamo;
+    private javax.swing.JTable TablaHistorial;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
 }
