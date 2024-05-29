@@ -4,7 +4,7 @@
 
 El repositorio del programa de biblioteca
 
-Version actual: 3.0
+Version actual: 4.0
 
 ### Actividades:
 
@@ -24,10 +24,6 @@ Version actual: 3.0
 - [x] historial de los prestamos de cada alumno
 - [x] actualizar el historial
 - [x] los prestamos terminados no se pueden eliminar ni actualizar
-- [ ] formato al codigo, refactorizar
-    - comentarios mayusculas
-    - division de paneles UI
-    - variables adecuadas y uniformes
 
 ![Imagen de codigo](https://images.unsplash.com/photo-1587620962725-abab7fe55159?q=80&w=1631&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)
 
